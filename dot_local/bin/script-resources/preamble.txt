@@ -1,0 +1,67 @@
+\documentclass[letterpaper,12pt]{article}
+
+%math and margin packages
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\DeclareMathOperator{\sech}{sech}
+\usepackage{braket}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{bbold}
+\usepackage{ragged2e}
+\usepackage{tikz}
+\usetikzlibrary{angles,quotes}
+\usepackage{tkz-euclide}
+\usepackage[htt]{hyphenat}
+\usepackage{verbatim}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{physics}
+\usepackage{svg}
+\usepackage{polynom}
+\usepackage{longdivision}
+\usepackage{bigints}
+\usepackage{fontawesome}
+\usepackage{pgfplots}
+\usepackage{sagetex}
+
+\usepackage{listings}
+
+% STOLEN FROM MY ALGORITHMS PREAMBLE LMOA
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos, color=orange!50]{todonotes}
+\usepackage[numbers, square]{natbib}
+\usepackage{fancybox}
+\usepackage{epsfig}
+\usepackage{soul}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage[shortlabels]{enumitem}
+\usepackage[version=4]{mhchem}
+\usepackage{multicol}
+\usepackage{forest}
+\usepackage{mathtools}
+\usepackage{comment}
+\usepackage{enumitem}
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+\usepackage[numbers]{natbib}
+\usepackage{subfiles}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+
+\lstset{ %
+language=,           % choose the language of the code
+%numbers=left,           % where to put the line-numbers
+%numberstyle=\tiny,      % the size of the fonts that are used for the line-numbers
+basicstyle=\small\ttfamily,    % the size of the fonts that are used for the line-numbers
+columns=flexible,
+breaklines=true
+}
+
+\usepackage[colorlinks=true,linkcolor=blue]{hyperref}
+
+\allowdisplaybreaks
+\renewcommand\qedsymbol{QED}
+
+

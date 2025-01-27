@@ -1,0 +1,7 @@
+
+[font.normal]
+family = "Source Code Pro"
+style = "Light"
+
+[general]
+import = ["/home/danny/.config/alacritty/dracula.toml"]
