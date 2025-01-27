@@ -1,5 +1,0 @@
-import = ["/home/danny/alacritty-master/dracula.toml"]
-
-[font.normal]
-family = "Source Code Pro"
-style = "Light"
