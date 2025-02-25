@@ -1,3 +1,3 @@
 # dotfiles
 
-basic dotfile configurations on my laptop
+basic dotfile configurations on my laptop, managed by Chezmoi
