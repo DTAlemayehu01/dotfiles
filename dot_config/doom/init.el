@@ -156,7 +156,8 @@
        ;;ocaml             ; an objective camel
        (org +roam2
             +pretty
-            +jupyter)      ; organize your plain life in plain text
+            +jupyter
+			+hugo)      ; organize your plain life in plain text
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
