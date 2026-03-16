@@ -33,7 +33,7 @@ export PATH=$PATH:~/.cargo/bin
 export PATH=$PATH:~/.local/bin
 export PATH=$PATH:~/.dotnet/tools
 
-export PETSC_DIR=/home/danny/spur/petsc
+export PETSC_DIR=~/spur/petsc
 export PETSC_ARCH=arch-linux-c-debug
 export GBM_BACKEND=nvidia-drm
 export __GLX_VENDOR_LIBRARY_NAME=nvidia

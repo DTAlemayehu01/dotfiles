@@ -36,7 +36,7 @@ read prob_no
 #echo "5. Good input looks like, 1 4,2 4,3 5, ..."
 #read input
 
-preamble=$(cat /home/danny/.local/bin/script-resources/preamble.txt)
+preamble=$(cat ~/.local/bin/script-resources/preamble.txt)
 
 # Latex file printing
 printf '%s\n' "$preamble" >> $filename
