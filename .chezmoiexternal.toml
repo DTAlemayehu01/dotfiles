@@ -1,0 +1,9 @@
+[".oh-my-zsh"]
+    type = "git-repo"
+	url = "https://github.com/ohmyzsh/ohmyzsh.git"
+[".oh-my-zsh/custom/plugins/zsh-vi-mode"]
+    type = "git-repo"
+	url = "https://github.com/jeffreytse/zsh-vi-mode"
+[".oh-my-zsh/custom/themes/powerlevel10k"]
+    type = "git-repo"
+	url = "https://github.com/ohmyzsh/ohmyzsh.git"

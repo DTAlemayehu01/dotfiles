@@ -1,0 +1,9 @@
+[font]
+size = 14
+
+[font.normal]
+family = "MesloLGS NF"
+style = "Light"
+
+[general]
+import = ["~/.config/alacritty/dracula.toml"]
