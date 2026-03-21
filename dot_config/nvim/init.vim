@@ -152,6 +152,9 @@ set noincsearch
 " line numbers
 set number
 
+" evil
+set nomodeline
+
 " unnamed plus clipboard
 set clipboard=unnamedplus
 
