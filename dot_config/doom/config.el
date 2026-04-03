@@ -137,4 +137,7 @@
 
 (setq org-icalendar-include-todo t)
 
+(with-eval-after-load 'ox
+  (require 'ox-hugo))
+
 (load-file "~/Org-Sync/org-calendars/calendars.el")
