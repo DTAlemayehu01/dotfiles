@@ -1,0 +1,26 @@
+\documentclass{cubeamer}
+\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+\usepackage{amssymb}
+% \usepackage{setspace}
+\usepackage{tabularx}
+\usepackage{mathrsfs}
+\usepackage{subfig}
+\usepackage{float}
+\usepackage{url}
+\usepackage[natbib=true,style=ieee,backend=biber,useprefix=true,maxnames=5]{biblatex}
+\usepackage{bibentry}
+\addbibresource{References.bib}
+
+% Show outline before each section
+\AtBeginSection[]{
+    \begin{frame}<beamer>
+        \frametitle{Outline}
+        \tableofcontents[currentsection]
+    \end{frame}
+}
+
