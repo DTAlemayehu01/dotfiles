@@ -63,3 +63,4 @@
            :repo "lepisma/org-krita"
            :files ("resources" "resources" "*.el" "*.el")))
 (package! ox-hugo)
+;;(package! mode-line-invisible-mode)
