@@ -1,7 +1,7 @@
 #!/bin/bash
 
 chezmoi -R apply
-yay -Syyu
+yay -Syu
 doom sync
 doom upgrade
 rustup update

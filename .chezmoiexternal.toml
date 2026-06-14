@@ -1,9 +1,12 @@
 [".oh-my-zsh"]
     type = "git-repo"
 	url = "https://github.com/ohmyzsh/ohmyzsh.git"
+	clone.args = ["--depth=1"]
 [".oh-my-zsh/custom/plugins/zsh-vi-mode"]
     type = "git-repo"
 	url = "https://github.com/jeffreytse/zsh-vi-mode"
+	clone.args = ["--depth=1"]
 [".oh-my-zsh/custom/themes/powerlevel10k"]
     type = "git-repo"
-	url = "https://github.com/ohmyzsh/ohmyzsh.git"
+	url = "https://github.com/romkatv/powerlevel10k.git"
+	clone.args = ["--depth=1"]

@@ -81,8 +81,14 @@
   ;;(setq org-agenda-files '("")')
   (setq org-log-done 'note)
   (setq org-roam-directory "~/Org-Sync/org-roam")
-  (setq org-agenda-files (directory-files-recursively "~/Org-Sync/" "\\.org$"))
+  (setq org-roam-dailies-directory "daily/")
+  (setq org-roam-dailies-capture-templates
+        '(("d" "default" entry
+           "* %?"
+           :target (file+head "%<%Y-%m-%d>.org"
+                              "#+title: %<%Y-%m-%d>\n* Dailies\n** Outside\n** Workout\n** Drink a gallon\n** Read\n** Leetcode"))))
   (org-roam-db-autosync-mode)
+  (setq org-agenda-files (directory-files-recursively "~/Org-Sync/" "\\.org$"))
   (defun org-summary-todo (n-done n-not-done)
     "Switch entry to DONE when all subentries are done, to TODO otherwise."
     (let (org-log-done org-todo-log-states)   ; turn off logging
