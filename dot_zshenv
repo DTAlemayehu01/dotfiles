@@ -17,11 +17,19 @@ export CUDA_CACHE_PATH=$XDG_CACHE_HOME/nv
 export CARGO_HOME=$XDG_DATA_HOME/cargo
 export HISTFILE=$XDG_STATE_HOME/bash/history
 export DUB_HOME=$XDG_DATA_HOME/dub
-export PYTHONSTARTUP=$XDG_CONFIG_HOME/python/pythonrc
+export PYTHONSTARTUP=$XDG_CONFIG_HOME/python/pythonrc.py
+export PYTHON_HISTORY="$XDG_STATE_HOME"/python_history
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
+export NPM_CONFIG_TMP="$XDG_RUNTIME_DIR"/npm
+export NPM_CONFIG_CACHE=$XDG_CACHE_HOME/npm
+export NPM_CONFIG_INIT_MODULE="$XDG_CONFIG_HOME"/npm/config/npm-init.js
+export R_HISTFILE="$XDG_CONFIG_HOME/R/history"
 export DOOMDIR=$XDG_CONFIG_HOME/doom
 export npm_config_prefix="$HOME/.local"
 export MAXIMA_USERDIR="$XDG_CONFIG_HOME"/maxima
+export ANDROID_USER_HOME="$XDG_DATA_HOME"/android
+export ANDROID_AVD_HOME=$XDG_DATA_HOME/android/avd
+export SQLITE_HISTORY="$XDG_STATE_HOME"/sqlite_history
 
 # >>> coursier install directory >>>
 export PATH="$PATH:$HOME/.local/share/coursier/bin"
@@ -42,5 +50,6 @@ export GBM_BACKEND=nvidia-drm
 export __GLX_VENDOR_LIBRARY_NAME=nvidia
 export PASSWORD_STORE_DIR=$HOME/.password-store/
 export LD_LIBRARY_PATH=$PETSC_DIR/$PETSC_ARCH/lib
-
-
+export DOTNET_CLI_HOME="$XDG_DATA_HOME"/dotnet
+export KERAS_HOME="${XDG_STATE_HOME}/keras"
+export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass

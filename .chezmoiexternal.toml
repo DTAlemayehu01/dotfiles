@@ -10,3 +10,11 @@
     type = "git-repo"
 	url = "https://github.com/romkatv/powerlevel10k.git"
 	clone.args = ["--depth=1"]
+[".local/share/themes/Dracula"]
+    type = "git-repo"
+	url = "https://github.com/dracula/gtk.git"
+	clone.args = ["--depth=1"]
+[".local/bin/gtk4-theming.py"]
+	type = "file"
+	url = "https://raw.githubusercontent.com/DTAlemayehu01/gtk4-theme-setter/main/gtk4-theming.py"
+
