@@ -86,7 +86,8 @@
         '(("d" "default" entry
            "* %?"
            :target (file+head "%<%Y-%m-%d>.org"
-                              "#+title: %<%Y-%m-%d>\n* Dailies\n** Outside\n** Workout\n** Drink a gallon\n** Read\n** Leetcode"))))
+                              "#+title: %<%Y-%m-%d>\n* Dailies\n** Outside\n** Workout
+\n** Relationship \n** Drink a gallon\n** Read\n** Leetcode\n** Volunteering"))))
   (org-roam-db-autosync-mode)
   (setq org-agenda-files (directory-files-recursively "~/Org-Sync/" "\\.org$"))
   (defun org-summary-todo (n-done n-not-done)

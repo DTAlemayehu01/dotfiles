@@ -44,6 +44,8 @@ export PATH=$PATH:$CARGO_HOME/bin
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.dotnet/tools
 
+export CHROOT=$HOME/chroot
+
 export PETSC_DIR=$HOME/spur/petsc
 export PETSC_ARCH=arch-linux-c-debug
 export GBM_BACKEND=nvidia-drm
