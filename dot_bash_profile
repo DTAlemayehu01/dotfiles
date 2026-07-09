@@ -37,3 +37,7 @@ export MAXIMA_USERDIR="$XDG_CONFIG_HOME"/maxima
 # >>> coursier install directory >>>
 export PATH="$PATH:~/.local/share/coursier/bin"
 # <<< coursier install directory <<<
+
+if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
+  start-hyprland
+fi
