@@ -25,16 +25,20 @@
 \usepackage{stmaryrd}
 \usepackage{url}
 
+\usepackage{fancybox}
 \usepackage{listings}
+
+\usepackage[natbib=true,style=ieee,backend=biber,useprefix=true,maxnames=5]{biblatex}
+\usepackage{bibentry}
+\addbibresource{References.bib}
 
 % STOLEN FROM MY ALGORITHMS PREAMBLE LMOA
 \usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[usenames,dvipsnames]{xcolor}
 \usepackage{graphicx}
+\usepackage{csquotes}
 \usepackage[colorinlistoftodos, color=orange!50]{todonotes}
-\usepackage[numbers, square]{natbib}
-\usepackage{fancybox}
 \usepackage{epsfig}
 \usepackage{soul}
 \usepackage[framemethod=tikz]{mdframed}
@@ -47,7 +51,6 @@
 \usepackage{enumitem}
 \usepackage[utf8]{inputenc}
 \usepackage{color}
-\usepackage[numbers]{natbib}
 \usepackage{subfiles}
 \usepackage{algorithm}
 \usepackage[noend]{algpseudocode}
@@ -61,9 +64,8 @@ columns=flexible,
 breaklines=true
 }
 
-\usepackage[colorlinks=true,linkcolor=blue]{hyperref}
+\usepackage[colorlinks=true,citecolor=blue,linkcolor=blue,backlinks=true]{hyperref}
 
 \allowdisplaybreaks
 \renewcommand\qedsymbol{QED}
-
 

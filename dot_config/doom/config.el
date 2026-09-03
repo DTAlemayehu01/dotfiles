@@ -21,8 +21,9 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
-;;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
-;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
+;;(setq doom-font (font-spec :family "MesloLGS NF" :size 14 :weight 'light)
+;;      ;; can specify :family ""
+;;      doom-variable-pitch-font (font-spec :size 14))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -86,8 +87,7 @@
         '(("d" "default" entry
            "* %?"
            :target (file+head "%<%Y-%m-%d>.org"
-                              "#+title: %<%Y-%m-%d>\n* Dailies\n** Outside\n** Workout
-\n** Relationship \n** Drink a gallon\n** Read\n** Leetcode\n** Volunteering"))))
+                              "#+title: %<%Y-%m-%d>\n\n* Dailies\n** Meditate\n** Outside\n** Workout\n** Relationship\n** Drink a gallon\n** Read\n** Leetcode\n** Volunteering"))))
   (org-roam-db-autosync-mode)
   (setq org-agenda-files (directory-files-recursively "~/Org-Sync/" "\\.org$"))
   (defun org-summary-todo (n-done n-not-done)
@@ -99,6 +99,12 @@
   (setq org-agenda-span 10)
   (setq org-agenda-start-on-weekday nil))
 
+(setq org-capture-templates
+      '(("a" "Agenda" entry (file "~/Org-Sync/org-agenda/tenative_events.org")
+         "* TODO %?\n %i \n %a")
+        ("r" "Refile" entry (file "~/Org-Sync/refile.org")
+         "* %?\n %i \n %a")))
+
 (after! projectile
   (setq projectile-project-root-files-bottom-up
         (remove ".git"
@@ -109,6 +115,22 @@
   (setq emojify-display-style 'unicode)
   (setq emojify-emoji-styles '(unicode)))
 ;;(bind-key* (kbd "C-c .") #'emojify-insert-emoji)) ; override binding in any mode
+
+(use-package! websocket
+  :after org-roam)
+
+(use-package! org-roam-ui
+  :after org-roam ;; or :after org
+  ;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
+  ;;         a hookable mode anymore, you're advised to pick something yourself
+  ;;         if you don't care about startup time, use
+  :hook (after-init . org-roam-ui-mode)
+  :config
+  (setq org-roam-ui-sync-theme t
+        org-roam-ui-follow t
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start t))
+
 
 ;; dapy
 (require 'dap-python)
@@ -144,7 +166,134 @@
 
 (setq org-icalendar-include-todo t)
 
+;; Exporters
 (with-eval-after-load 'ox
   (require 'ox-hugo))
+(require 'ox-ipynb)
 
 (load-file "~/Org-Sync/org-calendars/calendars.el")
+
+;; Latex
+(map! :map cdlatex-mode-map :i "TAB" #'cdlatex-tab)
+
+(setq lsp-tex-server 'digestif)
+
+(add-hook 'LaTeX-mode-hook 'outline-minor-mode)
+
+(add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
+
+(add-hook 'LaTeX-mode-hook 'global-auto-revert-mode)
+
+(setq org-latex-src-block-backend 'listings)
+
+(defun thanos/wtype-text (text)
+  "Process TEXT for wtype, handling newlines properly."
+  (let* ((has-final-newline (string-match-p "\n$" text))
+         (lines (split-string text "\n"))
+         (last-idx (1- (length lines))))
+    (string-join
+     (cl-loop for line in lines
+              for i from 0
+              collect (cond
+                       ;; Last line without final newline
+                       ((and (= i last-idx) (not has-final-newline))
+                        (format "wtype \"%s\""
+                                (replace-regexp-in-string "\"" "\\\\\"" line)))
+                       ;; Any other line
+                       (t
+                        (format "wtype \"%s\" && wtype -k Return"
+                                (replace-regexp-in-string "\"" "\\\\\"" line)))))
+     " && ")))
+
+(define-minor-mode thanos/type-mode
+  "Minor mode for inserting text via wtype."
+  :keymap `((,(kbd "C-c C-c") . ,(lambda () (interactive)
+                                   (call-process-shell-command
+                                    (thanos/wtype-text (buffer-string))
+                                    nil 0)
+                                   (delete-frame)))
+            (,(kbd "C-c C-k") . ,(lambda () (interactive)
+                                   (kill-buffer (current-buffer))))))
+
+(defun thanos/type ()
+  "Launch a temporary frame with a clean buffer for typing."
+  (interactive)
+  (let ((frame (make-frame '((name . "emacs-float")
+                             (fullscreen . 0)
+                             (undecorated . t)
+                             (width . 70)
+                             (height . 20))))
+        (buf (get-buffer-create "emacs-float")))
+    (select-frame frame)
+    (switch-to-buffer buf)
+    (with-current-buffer buf
+      (erase-buffer)
+      (org-mode)
+      (flyspell-mode)
+      (thanos/type-mode)
+      (setq-local header-line-format
+                  (format " %s to insert text or %s to cancel."
+                          (propertize "C-c C-c" 'face 'help-key-binding)
+			  (propertize "C-c C-k" 'face 'help-key-binding)))
+      ;; Make the frame more temporary-like
+      (set-frame-parameter frame 'delete-before-kill-buffer t)
+      (set-window-dedicated-p (selected-window) t))))
+
+(require 'calfw-org)
+
+;; elfeed
+(defun concatenate-authors (authors-list)
+  "Given AUTHORS-LIST, list of plists; return string of all authors concatenated."
+  ;;(if (> (length authors-list) 1)
+  ;;    (format "%s et al." (plist-get (nth 0 authors-list) :name))
+  ;;  (plist-get (nth 0 authors-list) :name)))
+  (mapconcat
+   (lambda (author) (plist-get author :name))
+   authors-list ", "))
+
+
+(defun my-search-print-fn (entry)
+  "Print ENTRY to the buffer."
+  (let* ((date (elfeed-search-format-date (elfeed-entry-date entry)))
+         (title (or (elfeed-meta entry :title)
+                    (elfeed-entry-title entry) ""))
+         (title-faces (elfeed-search--faces (elfeed-entry-tags entry)))
+         (entry-score (elfeed-format-column (number-to-string (elfeed-score-scoring-get-score-from-entry entry)) 10 :left))
+         (entry-authors (concatenate-authors
+                         (elfeed-meta entry :authors)))
+         (title-width (- (window-width) 10
+                         elfeed-search-trailing-width))
+         (title-column (elfeed-format-column
+                        title 100
+                        :left))
+         (authors-column (elfeed-format-column entry-authors 40 :left)))
+    (insert (propertize date 'face 'elfeed-search-date-face) " ")
+
+    (insert entry-score " ")
+
+    (insert (propertize title-column
+                        'face title-faces 'kbd-help title) " ")
+    (insert (propertize authors-column
+                        'kbd-help entry-authors) " ")))
+
+(use-package! elfeed
+  :config
+  ;;(setq elfeed-search-filter "@2months")
+  ;;(setq elfeed-search-filter "@2-week-ago +unread")
+  (setq elfeed-search-print-entry-function #'my-search-print-fn)
+  (setq elfeed-search-date-format '("%a %b %d, %Y" 20 :left))
+  (setq elfeed-search-title-max-width 110))
+
+(add-hook! 'elfeed-search-mode-hook 'elfeed-update)
+
+;;elfeed-score
+(require 'elfeed-score)
+(use-package! elfeed-score
+  ;;:ensure t
+  :after elfeed
+  :config
+  (setq elfeed-score-serde-score-file "~/Org-Sync/elfeed.score")
+  (progn
+    ;;(elfeed-score-load-score-file)
+    (elfeed-score-enable)
+    (define-key elfeed-search-mode-map "=" elfeed-score-map)))

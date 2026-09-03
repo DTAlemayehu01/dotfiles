@@ -24,7 +24,8 @@
  '(org-safe-remote-resources
    '("\\`https://fniessen\\.github\\.io/org-html-themes/org/theme-readtheorg\\.setup\\'"))
  '(org-scheduled-past-days 1)
- '(package-selected-packages '(org-super-agenda)))
+ '(package-selected-packages '(calfw-org org-super-agenda tinee))
+ '(package-vc-selected-packages '((tinee :url "https://codeberg.org/tusharhero/tinee.git"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

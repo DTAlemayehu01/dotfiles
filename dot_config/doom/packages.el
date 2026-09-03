@@ -61,6 +61,20 @@
 (package! org-krita
   :recipe (:host github
            :repo "lepisma/org-krita"
-           :files ("resources" "resources" "*.el" "*.el")))
+           :files ("resources" "*.el")))
 (package! ox-hugo)
+(package! leetcode)
+(package! ox-ipynb
+  :recipe (:host github
+           :repo "jkitchin/ox-ipynb"
+           :files ("obipy-resources" "*.el")))
+(unpin! org-roam)
+(package! org-roam-ui)
 ;;(package! mode-line-invisible-mode)
+;;(package! enwc)
+;;(package! calfw-...)
+(package! elfeed-score)
+;;(package! canvas-utils
+;;  :recipe (:host github
+;;           :repo "paulodder/canvas-emacs"
+;;           :files ("*.el")))

@@ -50,7 +50,6 @@ export PETSC_DIR=$HOME/spur/petsc
 export PETSC_ARCH=arch-linux-c-debug
 export GBM_BACKEND=nvidia-drm
 export __GLX_VENDOR_LIBRARY_NAME=nvidia
-export PASSWORD_STORE_DIR=$HOME/.password-store/
 export LD_LIBRARY_PATH=$PETSC_DIR/$PETSC_ARCH/lib
 export DOTNET_CLI_HOME="$XDG_DATA_HOME"/dotnet
 export KERAS_HOME="${XDG_STATE_HOME}/keras"

@@ -1,0 +1,87 @@
+local terminal = "alacritty"
+local fileManager = "nautilus"
+local menu = "rofi -show drun"
+
+local mainMod = "SUPER"
+
+hl.bind(mainMod .. " + SHIFT + E", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
+
+hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(terminal))
+hl.bind(mainMod .. " + SHIFT + RETURN", hl.dsp.exec_cmd("emacsclient -c"))
+hl.bind(mainMod .. " + CTRL + RETURN", hl.dsp.exec_cmd("emacsclient -c --eval '(thanos/type)'"))
+hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("hyprpicker -a"))
+hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))
+hl.bind(mainMod .. " + CTRL + S", hl.dsp.exec_cmd("slurp | grim -g - ~/Pictures/screenshots/screenshot_${date '+%Y_%m_%d_%T_%Z'}.png | wl-copy"))
+hl.bind(mainMod .. " + CTRL + SHIFT + S", hl.dsp.exec_cmd("grim -g '${slurp}' - | wl-copy"))
+hl.bind(mainMod .. " + CTRL + SHIFT + S", hl.dsp.exec_cmd("wl-paste > ~/Pictures/screenshots/screenshot_$(date '+%Y_%m_%d_%T_%Z').png"))
+
+hl.bind(mainMod .. " + SHIFT + X", hl.dsp.exec_cmd("hyprlock"))
+
+local refresh_bar = "killall -SIGUSR2 waybar"
+hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd("killall waybar"))
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("waybar"))
+
+local swap_background = "~/.local/bin/swap-background.sh"
+hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(swap_background))
+
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ +5% && refresh_bar"), { repeating = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ -5% && refresh_bar"), { repeating = true })
+hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("pactl set-source-mute @DEFAULT_SOURCE@ toggle && refresh_bar"), { locked = true })
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd("pactl set-sink-mute @DEFAULT_SINK@ toggle && refresh_bar"), { locked = true })
+
+-- playerctl
+hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
+hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
+hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
+hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
+
+hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl s +5%"), { repeating = true })
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl s 5%-"), { repeating = true })
+
+local toggle_touchpad = "~/.local/bin/toggletouchpad.sh"
+hl.bind("XF86TouchpadToggle", hl.dsp.exec_cmd(toggle_touchpad))
+
+local closeWindowBind = hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.window.close())
+
+hl.bind(mainMod .. " + SPACE", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
+
+local hy3 = hl.plugin.hy3
+
+--[=====[
+hl.bind(mainMod .. " + H", hy3.move_focus("l"))
+hl.bind(mainMod .. " + L", hy3.move_focus("r"))
+hl.bind(mainMod .. " + K", hy3.move_focus("u"))
+hl.bind(mainMod .. " + J", hy3.move_focus("d"))
+
+hl.bind(mainMod .. " + SHIFT + H", hy3.move_window("l"))
+hl.bind(mainMod .. " + SHIFT + L", hy3.move_window("r"))
+hl.bind(mainMod .. " + SHIFT + K", hy3.move_window("u"))
+hl.bind(mainMod .. " + SHIFT + J", hy3.move_window("d"))
+
+hl.bind(mainMod .. " + CTRL + V", hy3.make_group("v", {ephemeral = "force"}))
+hl.bind(mainMod .. " + CTRL + H", hy3.make_group("h", {ephemeral = "force"}))
+hl.bind(mainMod .. " + CTRL + H", hy3.change_group("h"))
+--]=====]
+
+hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
+hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
+hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "up" }))
+hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "down" }))
+
+hl.bind(mainMod .. " + SHIFT + H", hl.dsp.window.move({ direction = "left" }))
+hl.bind(mainMod .. " + SHIFT + L", hl.dsp.window.move({ direction = "right" }))
+hl.bind(mainMod .. " + SHIFT + K", hl.dsp.window.move({ direction = "up" }))
+hl.bind(mainMod .. " + SHIFT + J", hl.dsp.window.move({ direction = "down" }))
+
+for i = 1, 10 do
+    local key = i % 10
+    hl.bind(mainMod .. " + " .. key, hl.dsp.focus({workspace = i}))
+    hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({workspace = i}))
+end
+
+hl.bind("ALT + ALT_R + down", hl.dsp.focus({workspace = "e+1"}))
+hl.bind("ALT + ALT_R + up", hl.dsp.focus({workspace = "e-1"}))
+
+hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), {mouse = true})
+hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), {mouse = true})
