@@ -3,7 +3,7 @@
 
 pkgname=joycond-autopair-git
 _name=joycond
-pkgver=0.1.0.autopair.r3.gea55b5a
+pkgver=v0.1.0.r0.g028e830
 pkgrel=1
 pkgdesc='Userspace daemon to combine joy-cons from the hid-nintendo kernel driver. Modified to autopair Pro Controllers.'
 arch=('x86_64' 'aarch64')
@@ -32,5 +32,4 @@ build() {
 package() {
   cd "$srcdir/$_name"
   make DESTDIR="$pkgdir/" install
-  mv "$pkgdir/lib" "$pkgdir/usr/"
 }
