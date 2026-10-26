@@ -38,6 +38,8 @@ export PATH="$PATH:$HOME/.local/share/coursier/bin"
 
 export EDITOR=nvim
 export VISUAL=nvim
+export LOCAL_NOTEBOOK_DEV=1
+export BROWSER=librewolf
 export PATH=$PATH:$XDG_CONFIG_HOME/emacs/bin
 export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:$CARGO_HOME/bin

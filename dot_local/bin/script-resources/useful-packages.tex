@@ -1,0 +1,28 @@
+%bare minimum math, code, formatting
+\usepackage{physics}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{listings}
+\lstset{
+  language=,
+  basicstyle=\small\ttfamily,
+  columns=flexible,
+  breaklines=true,
+  mathescape
+}
+%links and urls
+\usepackage{url}
+\usepackage[colorlinks=true,citecolor=blue,linkcolor=blue,backlinks=true]{hyperref}
+%figures
+\usepackage{float}
+\usepackage{pgfplots}
+%\usepackage{sagetex} -- less useful since i work in org
+
+%useful declarations
+\DeclareMathOperator{\sech}{sech}
+%\DeclareMathOperator{\var}{Var}
+
+\renewcommand\qedsymbol{QED}
+
+%settings
+\allowdisplaybreaks

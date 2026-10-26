@@ -32,7 +32,9 @@
        doom              ; what makes DOOM look the way it does
        dashboard         ; a nifty splash screen for Emacs
        ;;doom-quit         ; DOOM quit-message prompts when you quit Emacs
-       (emoji +unicode)  ; 🙂
+       (emoji +unicode
+              +ascii
+              +github)  ; 🙂
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        ;;hydra
        ;;indent-guides     ; highlighted indent columns
@@ -68,8 +70,10 @@
 
        :emacs
        dired             ; making dired pretty [functional]
+       eww               ;The internet is gross
+       tramp             ; Remote files at your arthritic fingertips
        electric          ; smarter, keyword-based electric-indent
-       ibuffer         ; interactive buffer management
+       ibuffer           ; interactive buffer management
        undo              ; persistent, smarter undo for your inevitable mistakes
        vc                ; version-control and Emacs, sitting in a tree
 
@@ -77,7 +81,8 @@
        eshell            ; the elisp shell that works everywhere
        ;;shell             ; simple shell REPL for Emacs
        ;;term              ; basic terminal emulator for Emacs
-       vterm             ; the best terminal emulation in Emacs
+       ;;vterm             ; the best terminal emulation in Emacs
+       ghostel
 
        :checkers
        syntax            ; tasing you for every semicolon you forget
@@ -95,11 +100,12 @@
        ;;ein               ; tame Jupyter notebooks with emacs
        (eval +overlay)     ; run code, run (also, repls)
        gist              ; interacting with github gists
+       llm              ; LLM Stuff
        lookup              ; navigate your code and its documentation
        (lsp +peek)               ; M-x vscode
-       magit             ; a git porcelain for Emacs
+       (magit +forge)             ; a git porcelain for Emacs
        make              ; run make tasks from Emacs
-       pass              ; password manager for nerds
+       (pass +auth)              ; password manager for nerds
        pdf               ; pdf enhancements
        ;;prodigy           ; FIXME managing external services & code builders
        ;;rgb               ; creating color strings
@@ -144,19 +150,20 @@
        ;;(haskell +lsp)    ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ; a language you can depend on
-       json              ; At least it ain't XML
+       (json +tree-sitter
+             +lsp)              ; At least it ain't XML
        (java +lsp
              +tree-sitter)       ; the poster child for carpal tunnel syndrome
        (javascript +lsp
                    +tree-sitter)        ; all(hope(abandon(ye(who(enter(here))))))
-       (julia +lsp
-              +tree-sitter)             ; a better, faster MATLAB
+       ;;(julia +lsp
+       ;;       +tree-sitter)             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
        (latex +cdlatex
               +latexmk
               +fold
               +lsp)        ; writing papers in Emacs has never been so fun
-       ;;lean              ; for folks with too much to prove
+       (lean +lsp)              ; for folks with too much to prove
        ;;ledger            ; be audit you can be
        (lua +lsp
             +tree-sitter)               ; one-based indices? one-based indices
@@ -165,12 +172,16 @@
        ;;nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
        (org +roam
+            +gnuplot
+            +noter
             +pretty
+            ;;+present
             +jupyter)      ; organize your plain life in plain text
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
        (python +lsp
+               +uv
                +tree-sitter)       ; beautiful is better than ugly
        ;;qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
@@ -192,7 +203,9 @@
        ;;zig               ; C, but simpler
 
        :email
-       ;;(mu4e +org +gmail)
+       (mu4e +org
+             +gmail
+             +mbsync)
        notmuch
        ;;(wanderlust +gmail)
 

@@ -1,8 +1,8 @@
 #!/bin/bash
 
 chezmoi update
-chezmoi -R apply
 chezmoi merge-all
+chezmoi -R apply
 yay -Syu
 doom sync
 doom upgrade

@@ -22,10 +22,7 @@ hl.bind(mainMod .. " + SHIFT + RETURN", hl.dsp.exec_cmd("emacsclient -c"))
 hl.bind(mainMod .. " + CTRL + RETURN", hl.dsp.exec_cmd("emacsclient -c --eval '(thanos/type)'"))
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("hyprpicker -a"))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))
-hl.bind(mainMod .. " + CTRL + S", hl.dsp.exec_cmd("slurp | grim -g - ~/Pictures/screenshots/screenshot_${date '+%Y_%m_%d_%T_%Z'}.png | wl-copy"))
-hl.bind(mainMod .. " + CTRL + SHIFT + S", hl.dsp.exec_cmd("grim -g '${slurp}' - | wl-copy"))
-hl.bind(mainMod .. " + CTRL + SHIFT + S", hl.dsp.exec_cmd("wl-paste > ~/Pictures/screenshots/screenshot_$(date '+%Y_%m_%d_%T_%Z').png"))
-
+hl.bind("Print", hl.dsp.exec_cmd("slurp | grim -g - - | tee ~/Pictures/screenshots/screenshot_$(date '+%Y_%m_%d_%T_%Z').png | wl-copy"))
 hl.bind(mainMod .. " + SHIFT + X", hl.dsp.exec_cmd("hyprlock"))
 
 local refresh_bar = "killall -SIGUSR2 waybar"

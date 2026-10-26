@@ -78,3 +78,12 @@
 ;;  :recipe (:host github
 ;;           :repo "paulodder/canvas-emacs"
 ;;           :files ("*.el")))
+(package! code-cells)
+;; SageMath <3
+(package! sage-shell-mode)
+(package! ob-sagemath)
+(package! pinentry)
+(package! agent-shell)
+;;(package! filechooser)
+(package! eca)
+(package! elpher)

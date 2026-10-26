@@ -12,16 +12,17 @@ hl.monitor({
     scale = "auto",
 })
 
-hl.on("hyprland.start", function()
-        hl.exec_cmd("hyprpaper")
-        hl.exec_cmd("hyprpm reload -n")
-        hl.exec_cmd("redshift -l 39.86804:-104.97192")
-        hl.exec_cmd("waybar")
-end)
-
 hl.env("GDK_SCALE", "2")
 hl.env("XCURSOR_SIZE", "32")
 hl.env("HYPRCURSOR_SIZE", "24")
+
+hl.on("hyprland.start", function()
+    hl.exec_cmd("hyprpaper")
+--hl.exec_cmd("hyprpm reload -n") --not currently using plugins
+    hl.exec_cmd("redshift -l 39.86804:-104.97192")
+    hl.exec_cmd("waybar")
+    hl.exec_cmd("emacsclient -c -a '' -e '(elfeed)' -e '(elfeed-update)'")
+end)
 
 hl.config({
     general = {
@@ -118,7 +119,7 @@ hl.config({
       kb_layout = "us",
       kb_variant = "",
       kb_model = "",
-      kb_options = "",
+      kb_options = "caps:none",
       kb_rules = "",
 
       follow_mouse = 1,
@@ -155,6 +156,16 @@ hl.window_rule({
     no_blur = true,
     max_size = {1,1},
     opacity = 0.0,
+})
+
+hl.window_rule({
+    name = "termfilechooser-rules",
+    match = {
+        class = "^(file_chooser)$"
+    },
+    float = true,
+    center = true,
+    size = {1000, 650},
 })
 
 require("./binds.lua")
