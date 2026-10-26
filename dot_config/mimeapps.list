@@ -1,0 +1,30 @@
+[Default Applications]
+x-scheme-handler/postman=Postman.desktop
+x-scheme-handler/etcher=balenaEtcher.desktop
+text/html=librewolf.desktop
+x-scheme-handler/http=librewolf.desktop
+x-scheme-handler/https=librewolf.desktop
+x-scheme-handler/about=librewolf.desktop
+x-scheme-handler/unknown=librewolf.desktop
+image/jpeg=mpv.desktop
+application/octet-stream=emacs.desktop
+x-scheme-handler/figma=figma-linux.desktop
+x-scheme-handler/mailto=emacsclient-mail.desktop
+x-scheme-handler/mid=userapp-Betterbird-WG2UV3.desktop
+message/rfc822=userapp-Betterbird-WG2UV3.desktop
+x-scheme-handler/net.thunderbird=userapp-Betterbird-Z4DUV3.desktop
+application/pdf=mupdf.desktop
+application/atom+xml=eu.betterbird.Betterbird.desktop
+
+[Added Associations]
+application/x-ipynb+json=emacsclient.desktop;
+image/jpeg=mpv.desktop;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.desktop;
+application/octet-stream=emacs.desktop;
+x-scheme-handler/mailto=userapp-Betterbird-WG2UV3.desktop;
+x-scheme-handler/mid=userapp-Betterbird-WG2UV3.desktop;
+message/rfc822=userapp-Betterbird-WG2UV3.desktop;
+x-scheme-handler/net.thunderbird=userapp-Betterbird-Z4DUV3.desktop;
+application/pdf=org.pwmt.zathura.desktop
+application/atom+xml=librewolf.desktop;eu.betterbird.Betterbird.desktop;
+application/x-chrome-extension=chromium.desktop;

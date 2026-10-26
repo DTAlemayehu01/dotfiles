@@ -1,0 +1,4 @@
+[filechooser]
+cmd=$HOME/.local/bin/yazi-wrapper.sh
+default_dir=$HOME
+
